@@ -7,7 +7,8 @@ import appReducers from './reducers/index';
 import { Provider } from 'react-redux';
 
 const store = createStore(
-  appReducers
+  appReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION_ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
