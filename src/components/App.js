@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from './header/Header';
-import Message from './message/Message';
 import Footer from './footer/Footer';
 import ProductsContainer from '../containers/ProductsContainer';
 import CartContainer from '../containers/CartContainer';
+import MessageContainer from '../containers/MessageContainer';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <main id="mainContainer">
           <div className="container">
             <ProductsContainer />
-            <Message />
+            <MessageContainer />
             <CartContainer />
           </div>
         </main>

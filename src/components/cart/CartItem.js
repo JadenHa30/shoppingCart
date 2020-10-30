@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as message from './../../constant/Message';
 
 class CartItem extends Component {
     
@@ -29,7 +30,13 @@ class CartItem extends Component {
                 </td>
                 <td>{this.total(item.product.price, item.quantity)}$</td>
                 <td>
-                    <button type="button" className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" data-original-title="Remove item">
+                    <button type="button" 
+                            className="btn btn-sm btn-primary waves-effect waves-light" 
+                            data-toggle="tooltip" 
+                            data-placement="top" 
+                            data-original-title="Remove item"
+                            onClick={()=>this.removeItem(item.product)}
+                    >
                     X
                     </button>
                 </td>
@@ -38,6 +45,11 @@ class CartItem extends Component {
     }
 
     total = (item, qty)=> {return item*qty};
+    removeItem = (product)=>{
+        const {removeItem, changeMessage} = this.props;
+        removeItem(product);
+        changeMessage(message.MSG_DELETE_CART_SUCCESS);
+    }
 }
 
 export default CartItem;

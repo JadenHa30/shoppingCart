@@ -18,7 +18,7 @@ const initalState = [
         rating: 3
     },
     {
-        id: 1,
+        id: 3,
         name: "iphone 10",
         img: "https://cdn.shopify.com/s/files/1/0263/5333/6380/products/iphone-x-lcd-repair-service-repair-time2talk-swansea_900x.jpg?v=1593465943",
         des: "apple product",

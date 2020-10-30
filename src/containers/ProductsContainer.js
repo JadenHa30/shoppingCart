@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Products from '../components/products/Products';
 import Product from '../components/products/Product';
 import PropTypes from 'prop-types';
+import {actAddToCart, actChangeMessage} from '../actions/index'
 
 class ProductsContainer extends Component {
     render() { 
@@ -17,9 +18,14 @@ class ProductsContainer extends Component {
 
     showProducts(products){
         let result = "";
-        if(products.length>0){
+        const {addToCart, changeMessage} = this.props;
+        if(products.length > 0){
             result = products.map((product, index)=>{
-                    return <Product key={index} product={product}/>
+                    return <Product key={index} 
+                                    product={product} 
+                                    addToCart={addToCart}
+                                    changeMessage = {changeMessage}
+                                    />
             });
         }
         return result;
@@ -37,7 +43,8 @@ ProductsContainer.propTypes = {
             inventory : PropTypes.number.isRequired,
             rating : PropTypes.number.isRequired
         })
-    ).isRequired //isRequired means we must have products
+    ).isRequired, //isRequired means we must have products
+    changeMessage: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -46,4 +53,15 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(ProductsContainer);
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        addToCart: product => {
+            dispatch(actAddToCart(product, 1));
+        },
+        changeMessage: message =>{
+            dispatch(actChangeMessage(message));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);
